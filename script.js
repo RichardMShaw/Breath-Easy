@@ -1,3 +1,26 @@
+const cToF = (celsius) => {
+  return celsius * 9 / 5 + 32;
+}
+
+
+const getWeather = (position) => {
+  axios.get(`https://api.airvisual.com/v2/nearest_city?lat=${position.lat}}&lon=${position.lng}&key=84fbc9a8-3330-4343-8870-d65a2131ad90`)
+    .then(res => {
+      let data = res.data.data
+      axios.get(`https://api.airvisual.com/v2/city?city=${data.city}&state=${data.state}&country=${data.country}&key=84fbc9a8-3330-4343-8870-d65a2131ad90`)
+        .then(res => {
+          let cityData = res.data.data.current
+          console.log(cityData)
+
+        })
+        .catch(err => console.log(err))
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+
 function initAutocomplete() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 33.640495, lng: -117.844296 },
@@ -5,15 +28,7 @@ function initAutocomplete() {
     mapTypeId: "roadmap",
   })
 
-  map.addListener('click', (event) => {
-    if (event.placeId) {
-      axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyAfq8onLqUrpElq9_9dzowPr19goEtyG38&place_id=${event.placeId}`)
-        .then((res) => {
-          console.log(res.data)
-        })
-        .catch(err => console.error(err))
-    }
-  })
+  map.addListener('click', (event) => getWeather(event.latLng.toJSON()))
 
   // Create the search box and link it to the UI element.
   const input = document.getElementById("pac-input");
@@ -92,6 +107,7 @@ function initAutocomplete() {
           infoWindow.setContent("Location found.");
           infoWindow.open(map);
           map.setCenter(pos);
+          getWeather(pos)
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
