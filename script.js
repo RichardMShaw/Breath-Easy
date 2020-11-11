@@ -1,175 +1,107 @@
-const STAT = {
-  BRAVE: 0,
-  HUNGRY: 1,
-  KIND: 2,
-  TIMID: 3,
-  CALM: 4
-}
-const questions = [
-  {
-    text: `Question 1`,
-    answers: [
-      {
-        text: `Answer 1`,
-        scores: [
-          {
-            stat: STAT.BRAVE,
-            val: 2
-          },
-          {
-            stat: STAT.HUNGRY,
-            val: 1
-          },
-          {
-            stat: STAT.TIMID,
-            val: -1
-          }
-        ]
-      },
-      {
-        text: `Answer 2`,
-        scores: [
-          {
-            stat: STAT.HUNGRY,
-            val: -1
-          },
-          {
-            stat: STAT.KIND,
-            val: 3
-          },
-          {
-            stat: STAT.CALM,
-            val: 1
-          }
-        ]
-      }
-    ]
-  },
-  {
-    text: `Question 2`,
-    answers: [
-      {
-        text: `Answer 1`,
-        scores: [
-          {
-            stat: STAT.CALM,
-            val: -2
-          },
-          {
-            stat: STAT.BRAVE,
-            val: 3
-          }
-        ]
-      },
-      {
-        text: `Answer 2`,
-        scores: [
-          {
-            stat: STAT.BRAVE,
-            val: -1
-          }
-        ]
-      },
-      {
-        text: `Answer 3`,
-        scores: [
-          {
-            stat: STAT.CALM,
-            val: 3
-          }
-        ]
-      }
-    ]
-  },
-  {
-    text: `Question 3`,
-    answers: [
-      {
-        text: `Answer 1`,
-        scores: [
-          {
-            stat: STAT.BRAVE,
-            val: 3
-          }
-        ]
-      },
-      {
-        text: `Answer 2`,
-        scores: [
-          {
-            stat: STAT.BRAVE,
-            val: 1
-          }
-        ]
-      },
-      {
-        text: `Answer 3`,
-        scores: []
-      },
-      {
-        text: `Answer 4`,
-        scores: [
-          {
-            stat: STAT.TIMID,
-            val: 1
-          }
-        ]
-      },
-      {
-        text: `Answer 5`,
-        scores: [
-          {
-            stat: STAT.TIMID,
-            val: 3
-          }
-        ]
-      }
-    ]
-  }
-]
-
-let stats = [0, 0, 0, 0, 0]
-
-const createQuiz = () => {
-  let quizInnerHTML = ''
-  questions.forEach((question, i) => {
-    quizInnerHTML += `<li><h1>${question.text}</h1>`
-    question.answers.forEach((answer, j) => {
-      quizInnerHTML += `<input type="radio" id="q${i}a${j}" name="q${i}" data-question="${i}" value="${j}">
-                            <label for="q${i}a${j}">${answer.text}</label>`
-    })
-    quizInnerHTML += `</li>`
+function initAutocomplete() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 33.640495, lng: -117.844296 },
+    zoom: 13,
+    mapTypeId: "roadmap",
   })
 
-  quizInnerHTML += `<li>
-                          <h1>Submit Answers?</h1>
-                          <button type=button class="submit">Submit</button>
-                        </li>`
-  document.getElementById('quiz').innerHTML = quizInnerHTML
-}
+  map.addListener('click', (event) => {
+    if (event.placeId) {
+      axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyAfq8onLqUrpElq9_9dzowPr19goEtyG38&place_id=${event.placeId}`)
+        .then((res) => {
+          console.log(res.data)
+        })
+        .catch(err => console.error(err))
+    }
+  })
 
-document.addEventListener('click', (event) => {
-  let target = event.target
-  if (target.classList.contains('submit')) {
-    stats = [0, 0, 0, 0, 0]
-    questions.forEach((question, i) => {
-      let radios = document.getElementsByName(`q${i}`)
-      let len = radios.length
-      for (let j = 0; j < len; j++) {
-        if (radios[j].checked) {
-          question.answers[j].scores.forEach(score => {
-            stats[score.stat] += score.val
-          })
-        }
-      }
+  // Create the search box and link it to the UI element.
+  const input = document.getElementById("pac-input");
+  const searchBox = new google.maps.places.SearchBox(input);
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener("bounds_changed", () => {
+    searchBox.setBounds(map.getBounds());
+  });
+  let markers = [];
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+
+  let clearButton = document.getElementById('clearMarkers')
+  clearButton.addEventListener('click', () => {
+    markers.forEach((marker) => {
+      marker.setMap(null)
     })
+  })
+  searchBox.addListener("places_changed", () => {
+    const places = searchBox.getPlaces();
 
-    document.getElementById('score').innerHTML = `<p>Stat 1: ${stats[0]}</p>
-                                                      <p>Stat 2: ${stats[1]}</p>
-                                                      <p>Stat 3: ${stats[2]}</p>
-                                                      <p>Stat 4: ${stats[3]}</p>
-                                                      <p>Stat 5: ${stats[4]}</p>`
-  }
-})
+    if (places.length == 0) {
+      return;
+    }
+    // Clear out the old markers.
+    markers.forEach((marker) => {
+      marker.setMap(null);
+    });
+    markers = [];
+    // For each place, get the icon, name and location.
+    const bounds = new google.maps.LatLngBounds();
+    places.forEach((place) => {
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+      const icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25),
+      };
+      // Create a marker for each place.
+      markers.push(
+        new google.maps.Marker({
+          map,
+          icon,
+          title: place.name,
+          position: place.geometry.location,
+        })
+      );
 
-createQuiz()
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+
+  infoWindow = new google.maps.InfoWindow();
+  const locationButton = document.getElementById("locationButton");
+  locationButton.addEventListener("click", () => {
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          infoWindow.setPosition(pos);
+          infoWindow.setContent("Location found.");
+          infoWindow.open(map);
+          map.setCenter(pos);
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  });
+
+
+}
