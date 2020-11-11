@@ -50,7 +50,7 @@ function initAutocomplete() {
   searchBox.addListener("places_changed", () => {
     const places = searchBox.getPlaces();
 
-    if (places.length == 0) {
+    if (places.length != 1 || places[0].icon !== 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/geocode-71.png') {
       return;
     }
     // Clear out the old markers.
@@ -72,6 +72,7 @@ function initAutocomplete() {
         anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25),
       };
+
       // Create a marker for each place.
       markers.push(
         new google.maps.Marker({
