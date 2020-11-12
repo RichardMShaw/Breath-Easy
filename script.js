@@ -31,7 +31,7 @@ function initAutocomplete() {
   map.addListener('click', (event) => getWeather(event.latLng.toJSON()))
 
   // Create the search box and link it to the UI element.
-  const input = document.getElementById("pac-input");
+  const input = document.getElementById("searchInput");
   const searchBox = new google.maps.places.SearchBox(input);
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
@@ -41,13 +41,7 @@ function initAutocomplete() {
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
 
-  let clearButton = document.getElementById('clearMarkers')
-  clearButton.addEventListener('click', () => {
-    markers.forEach((marker) => {
-      marker.setMap(null)
-    })
-  })
-  searchBox.addListener("places_changed", () => {
+  const searchLocation = () => {
     const places = searchBox.getPlaces();
 
     if (places.length != 1 || places[0].icon !== 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/geocode-71.png') {
@@ -91,7 +85,13 @@ function initAutocomplete() {
       }
     });
     map.fitBounds(bounds);
-  });
+  }
+
+  const searchButton = document.getElementById("searchButton")
+  searchButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    searchLocation()
+  })
 
   infoWindow = new google.maps.InfoWindow();
   const locationButton = document.getElementById("locationButton");
