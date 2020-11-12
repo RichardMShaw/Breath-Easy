@@ -5,50 +5,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.22/dist/shoelace/shoelace.css">
-    <title>Breath Easy</title>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.22/dist/shoelace/shoelace.css">
+  <title>Breath Easy</title>
 </head>
 
 <body>
-  <div class="container">
-    <ul>
-      <li class="logo"><img src="https://media.discordapp.net/attachments/773675594122133520/776168304750231552/Screen_Shot_2020-11-11_at_2.35.16_PM.png" alt="Breath Easy Logo"></li>
-    </ul>
-    <div class="menu">
-      <h1>Breath Easy</h1>
-      <h2>The App That Gives You A Fresh Breathe of Relief</h2>
+  <header>
+    <img src="./assets/breatheasy.png" alt="Breath Easy Logo">
+    <h1 id="title">Breath Easy</h1>
+    <h2 id="tagline">The App That Gives You A Fresh Breathe of Relief</h2>
+  </header>
+  <main class="container">
+    <div class="row-1">
+      <button type="button" id="locationButton" class="custom-map-control-button">Pan to Current Location</button>
+      <form>
+        <input type="text" id="searchInput" rows="2" placeholder="City and State, or Zipcode">
+        <button type="submit" id="searchButton">Search</button>
+      </form>
     </div>
-  </div>
-  <br>
-  <div class="header">
-    <br>
-    <p>Enter your city and state, zipcode, or simply <br>choose a location on the map to obtain the air<br>quality in that area.
-    </p>
-  </div>
-  <div>
-    <br>
-  </div>
-  <div class="main">
-    <form>
-      <input type="text" name="search" rows="2" placeholder="City and State, or Zipcode">
-      <input type="submit" value="Search">
-    </form>
-  </div>
-  <br>
-  <div id="footer" class="row">
-  <div class="column" id="map" col-9-med>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, doloribus dolorem! Eligendi minus dicta enim!
-  </div>
-  <div class="column" id="results" col-3-med>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam vero
-  officiis ratione dignissimos eaque, soluta fugiat exercitationem id minima magni consequuntur</div>
-</div>
-<div id="prevResults"></div>
+    <div class="row-11">
+      <div class="column-6">
+        <div id="map"></div>
+      </div>
+      <div class="column-6">
+        <div id="results"></div>
+      </div>
+    </div>
+  </main>
+  <footer>
 
-<script type="module"
-  src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.22/dist/shoelace/shoelace.esm.js">
-  src="script.js"
-</script>
-<script src="script.js"></script>
+  </footer>
 
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.22/dist/shoelace/shoelace.esm.js">
+      src = "script.js"
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfq8onLqUrpElq9_9dzowPr19goEtyG38&callback=initAutocomplete&libraries=places&v=weekly"
+    defer></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

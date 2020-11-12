@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+}
+
 *, *::before, *::after {
   margin: 0%;
   padding: 0%;
@@ -5,30 +9,42 @@
   font-family: sans-serif;
 }
 
+header {
+  background-color: rgb(21, 78, 124);
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1.5rem;
+  height: fit-content;
+  border-bottom: 0.5rem solid black;
+}
+
+header img {
+  float: left;
+  left: 2rem;
+  width: 6rem;
+  height: 6rem;
+}
+
+#title {
+  text-align: center;
+  padding-right: 6rem;
+  font-size: 6rem;
+  color: rgb(204, 243, 255);
+}
+
+#tagline {
+  text-align: center;
+  font-size: 3rem;
+  color: rgb(204, 243, 255);
+}
+
 .container {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 16.8rem);
   background-color: #42455a;
-}
-
-.menu {
-  text-align: center;
-  font-size: 30px;
-  color: #19dafa;
-  margin-top: -115px;
-}
-
-.active {
-  font-size: 40px;
-  color: #0e1516;
-}
-
-.logo img {
-  width: 120px;
-  height: 120px;
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-bottom: 10px;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .header {
@@ -36,21 +52,43 @@
   margin-left: 20px;
 }
 
-.main {
-  margin-left: 20px;
-  font-size: 20px;
+#map {
+  height: 100%;
+  width: calc(100% - 0.5rem);
 }
 
-.column {
-  display: inline;
+.row-1 {
+  width: 100%;
+  height: 8.3%;
+}
+
+.row-11 {
+  width: 100%;
+  height: 91.7%;
+}
+
+.column-6 {
+  float: left;
   background-color: #42455a;
-  height: 600px;
+  height: 100%;
+  width: 50%;
+  margin-right: 0px;
   border-top: 10px;
 }
 
 #results {
-  display: inline;
   background-color: #b2b1b1;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   border-top: 10px;
 }
+
+footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(21, 78, 124);
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  border-top: 0.5rem solid black;
