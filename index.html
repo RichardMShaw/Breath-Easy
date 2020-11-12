@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./reset.css" />
+
+  <style>
+    #pac-input {
+      width: 28rem;
+    }
+
+    #map {
+      height: 500px;
+      width: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <button type="button" id="locationButton" class="custom-map-control-button">Pan to Current Location</button><br>
+    <label>Address:</label>
+    <input id="pac-input" type="text"><br>
+    <button type="button" id="clearMarkers">Clear</button>
+
+    <div id="map">
+
+    </div>
+
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfq8onLqUrpElq9_9dzowPr19goEtyG38&callback=initAutocomplete&libraries=places&v=weekly"
+    defer></script>
+  <script src="./script.js">
+  </script>
+</body>
+
+</html>
