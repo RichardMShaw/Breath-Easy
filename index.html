@@ -29,14 +29,14 @@
     <br>
   </div>
   <div class="main">
+    <button type="button" id="locationButton" class="custom-map-control-button">Pan to Current Location</button>
     <form>
-      <input type="text" name="search" rows="2" placeholder="City and State, or Zipcode">
-      <pac-input type="submit" value="Search">
+      <input type="text" id="pac-input" rows="2" placeholder="City and State, or Zipcode">
     </form>
   </div>
   <br>
   <div id="footer" class="row">
-  <div class="column" id="map" col-9-med>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, doloribus dolorem! Eligendi minus dicta enim!
+  <div class="column" id="map" col-9-med>
   </div>
   <div class="column" id="results" col-3-med>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam vero
   officiis ratione dignissimos eaque, soluta fugiat exercitationem id minima magni consequuntur</div>
@@ -47,8 +47,10 @@
   src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.22/dist/shoelace/shoelace.esm.js">
   src="script.js"
 </script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfq8onLqUrpElq9_9dzowPr19goEtyG38&callback=initAutocomplete&libraries=places&v=weekly"
+    defer></script>
 <script src="script.js"></script>
-
 </body>
-
 </html>
