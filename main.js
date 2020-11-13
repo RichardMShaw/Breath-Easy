@@ -1,5 +1,12 @@
 // Initialize and add the map
 function initMap() {
+  let app = document.getElementById("app");
+
+  let aqi = document.getElementById("aqi");
+  let city = document.getElementById("city");
+  let state = document.getElementById("state");
+  let country = document.getElementById("country");
+
   // The location of irvine
   const irvine = {
       lat: 33.68, 
@@ -28,11 +35,17 @@ function initMap() {
           let data = positionData.data.data;
           console.log("data: " + JSON.stringify(data));
 
+          city.innerHTML = data.city;
+          state.innerHTML = data.state;
+          country.innerHTML = data.country;
+
           axios.get(`https://api.airvisual.com/v2/city?city=${data.city}&state=${data.state}&country=${data.country}&key=84fbc9a8-3330-4343-8870-d65a2131ad90`)
           .then(qualityData => {
               console.log("qualityData: " + JSON.stringify(qualityData));
               let cityData = qualityData.data.data.current;
               console.log("cityData: " + JSON.stringify(cityData)); 
+
+              aqi.innerHTML = cityData.pollution.aqius;
           })            
       });
   }
