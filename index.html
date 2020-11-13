@@ -4,40 +4,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./reset.css" />
-
-  <style>
-    #pac-input {
-      width: 28rem;
-    }
-
-    #map {
-      height: 500px;
-      width: 500px;
-    }
-  </style>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.22/dist/shoelace/shoelace.css">
+  <link href="style.css" rel="stylesheet">
+  <title>Breath Easy</title>
 </head>
 
 <body>
-  <main>
-    <button type="button" id="locationButton" class="custom-map-control-button">Pan to Current Location</button><br>
-    <label>Address:</label>
-    <input id="pac-input" type="text"><br>
-    <button type="button" id="clearMarkers">Clear</button>
-
-    <div id="map">
-
+  <header>
+    <img src="./assets/breatheasy.png" alt="Breath Easy Logo">
+    <h1 id="title">Breath Easy</h1>
+    <h2 id="tagline">The App That Gives You A Fresh Breathe of Relief</h2>
+  </header>
+  <main class="container">
+    <div class="row-1">
+      <button type="button" id="locationButton" class="custom-map-control-button">Pan to Current Location</button>
+      <form>
+        <input type="text" id="searchInput" rows="2" placeholder="City and State, or Zipcode">
+        <button type="submit" id="searchButton">Search</button>
+      </form>
     </div>
-
+    <div class="row-11">
+      <div class="column-6">
+        <div id="map"></div>
+      </div>
+      <div class="column-6">
+        <div id="results"></div>
+      </div>
+    </div>
   </main>
+  <footer>
+
+  </footer>
+
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.22/dist/shoelace/shoelace.esm.js">
+      src = "script.js"
+    </script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfq8onLqUrpElq9_9dzowPr19goEtyG38&callback=initAutocomplete&libraries=places&v=weekly"
     defer></script>
-  <script src="./script.js">
-  </script>
+  <script src="./script.js"></script>
 </body>
 
 </html>
