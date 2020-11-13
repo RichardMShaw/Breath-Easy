@@ -2,12 +2,18 @@ const cToF = (celsius) => {
   return celsius * 9 / 5 + 32;
 }
 
+const config = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "appliction/json"
+  }
+};
 
 const getWeather = (position) => {
-  axios.get(`https://api.airvisual.com/v2/nearest_city?lat=${position.lat}}&lon=${position.lng}&key=84fbc9a8-3330-4343-8870-d65a2131ad90`)
+  axios.get(`https://api.airvisual.com/v2/nearest_city?lat=${position.lat}}&lon=${position.lng}&key=84fbc9a8-3330-4343-8870-d65a2131ad90`, config)
     .then(res => {
       let data = res.data.data
-      axios.get(`https://api.airvisual.com/v2/city?city=${data.city}&state=${data.state}&country=${data.country}&key=84fbc9a8-3330-4343-8870-d65a2131ad90`)
+      axios.get(`https://api.airvisual.com/v2/city?city=${data.city}&state=${data.state}&country=${data.country}&key=84fbc9a8-3330-4343-8870-d65a2131ad90`, config)
         .then(res => {
           let cityData = res.data.data.current
           console.log(cityData)
