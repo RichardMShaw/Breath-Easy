@@ -1,52 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <title>Breathe Easy</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfq8onLqUrpElq9_9dzowPr19goEtyG38&callback=initMap&libraries=&v=weekly"
+        defer
+        ></script>
+        <link rel="stylesheet" type="text/css" href="main.css" />
+        <script src="main.js"></script>
+    </head>
+    <body>
+      <div id="app">
+        
+        <div id="results">
+          <div id="header">
+            <img src="img/cloud.svg" id="logo"><div id="logotype">Breathe Easy</div>
+          </div>
+          <div id="results-fields">
+            <div id="results-fields-container">
+              <div class="field">City:<span id="city" class="field-sp"></span></div>
+              <div class="field">State:<span id="state" class="field-sp"></span></div>
+              <div class="field">Country:<span id="country" class="field-sp"></span></div>
+              <div class="field">US AQI:<span id="aqi" class="field-sp"></span></div>
+            </div>
+          </div>
+        </div>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.22/dist/shoelace/shoelace.css">
-    <link href="style.css" rel="stylesheet">
-  <title>Breath Easy</title>
-</head>
-
-<body>
-  <header>
-    <img src="./assets/breatheasy.png" alt="Breath Easy Logo">
-    <h1 id="title">Breath Easy</h1>
-    <h2 id="tagline">The App That Gives You A Fresh Breathe of Relief</h2>
-  </header>
-  <main class="container">
-    <div class="row-1">
-      <button type="button" id="locationButton" class="custom-map-control-button">Pan to Current Location</button>
-      <form>
-        <input type="text" id="searchInput" rows="2" placeholder="City and State, or Zipcode">
-        <button type="submit" id="searchButton">Search</button>
-      </form>
-    </div>
-    <div class="row-11">
-      <div class="column-6">
         <div id="map"></div>
+
       </div>
-      <div class="column-6">
-        <div id="results"></div>
-      </div>
-    </div>
-  </main>
-  <footer>
-
-  </footer>
-
-  <script type="module"
-    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.22/dist/shoelace/shoelace.esm.js">
-      src = "script.js"
-    </script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfq8onLqUrpElq9_9dzowPr19goEtyG38&callback=initAutocomplete&libraries=places&v=weekly"
-    defer></script>
-  <script src="./script.js"></script>
-</body>
-
+    </body>
 </html>
