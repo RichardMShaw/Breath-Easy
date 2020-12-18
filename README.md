@@ -9,14 +9,24 @@ With this, you'll be able to discover what the air quality is for the nearest ci
 ## Table of Contents
 * [Usage](#usage)
 * [License](#license)
+* [Technology](#technology)
 * [Contributers](#contributers)
 * [Contributing](#contributing)
-* [Questions](#questions)
 
 ## Usage
 With this, you'll be able to discover what the air quality is for the nearest city based and where you clicked on the map.
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+##Technology
+[Shoelace](https://shoelace.style/)
+
+[Node](https://nodejs.org)
+
+[Axios](https://www.npmjs.com/package/axios)
+
+[Google Maps API](https://developers.google.com/maps/documentation/javascript/overview)
+
+[AirVisual API](https://www.iqair.com/us/)
 ## Contributers
 [Isaiah Anthony](https://github.com/isaiahant)
 
