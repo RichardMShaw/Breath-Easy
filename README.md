@@ -17,7 +17,7 @@ With this, you'll be able to discover what the air quality is for the nearest ci
 With this, you'll be able to discover what the air quality is for the nearest city based and where you clicked on the map.
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-##Technology
+## Technology
 [Shoelace](https://shoelace.style/)
 
 [Node](https://nodejs.org)
