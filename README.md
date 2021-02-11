@@ -6,6 +6,8 @@
 Breath Easy is a webapp designed using Shoelace Stylesheets, Javascript, NPM libraries, Node, Axios.js, Google Maps API and Airvisual API.
 With this, you'll be able to discover what the air quality is for the nearest city based and where you clicked on the map.
 
+Note: The demo link currently does not show features found in the screenshots. This will be added at an eventual date.
+
 ## Table of Contents
 * [Usage](#usage)
 * [License](#license)
@@ -15,6 +17,10 @@ With this, you'll be able to discover what the air quality is for the nearest ci
 
 ## Usage
 With this, you'll be able to discover what the air quality is for the nearest city based and where you clicked on the map.
+
+## Screenshots
+![image](assets/screenshot.png)
+
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ## Technology
